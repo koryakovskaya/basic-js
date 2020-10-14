@@ -1,5 +1,3 @@
-
-
 module.exports = function countCats(arr) {
     if (arr.length < 1)
     return 0;
