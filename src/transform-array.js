@@ -13,7 +13,7 @@ module.exports = function transform(arr) {
   
       for (let i = 0; i < solution.length; i++) {
         if (solution[i] === '--discard-next') {
-          if (solution[i + 1] || solution[i + 1] === false || isNaN(solution[i + 1]) || solution[i + 1] === 0) {
+          if (solution[i + 1] || solution[i + 1] === false || solution[i + 1] === 0 || isNaN(solution[i + 1]) ) {
                 delete solution[i + 1];
                 solution.splice(i, 1);
             } else {
