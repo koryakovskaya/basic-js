@@ -6,26 +6,34 @@ module.exports = function transform(arr) {
   let solution = arr.slice();
   let res = [];
 
-  if ((Array.isArray(arr)) {
+  if (Array.isArray(arr)) {
     if (arr.length === 0) {
       return [];
     } else {
+  
       for (let i = 0; i < solution.length; i++) {
         if (solution[i] === '--discard-next') {
-          if (solution[i + 1] || solution[i + 1] === false || solution[i + 1] === 0 || isNaN(solution[i + 1]) ) {
-            delete solution[i + 1];
-            solution.splice(i, 1);
-          } else {
-            solution.splice(i, 1);
-          }
+          if (solution[i + 1] || solution[i + 1] === false || isNaN(solution[i + 1]) || solution[i + 1] === 0) {
+                delete solution[i + 1];
+                solution.splice(i, 1);
+            } else {
+              solution.splice(i, 1);
+            }
         } else if (solution[i] === '--discard-prev') {
-          if (solution[i - 1] !== undefined) {
-            delete solution[i - 1];
-            solution.splice(i, 1);
-          } else {
-            solution.splice(i, 1);
-          }
-
+            if (solution[i - 1] !== undefined) {
+                delete solution[i - 1];
+                solution.splice(i, 1); 
+            } else {
+              solution.splice(i, 1);
+            }
+    
+        } else if (solution[i] === '--double-next') {
+            if (solution[i + 1] !== undefined) {
+              solution[i] = solution[i + 1];
+            } else {
+              solution.splice(i, 1);
+            }
+    
         } else if (solution[i] === '--double-prev') {
             if (solution[i - 1] !== undefined) {
               solution[i] = solution[i - 1];
@@ -33,18 +41,19 @@ module.exports = function transform(arr) {
               solution.splice(i, 1);
             }
         }
+    
+    }
+    
+    for(let k = 0; k < solution.length; k++) {
+        if (solution[k] !== undefined) {
+            res.push(solution[k]);
+        }
     }
 
-    for(let k = 0; k < solution.length; k++) {
-      if (solution[k] !== undefined) {
-          res.push(solution[k]);
-      }
+    return res;
   }
-
-  return res;
-}
-} else {
-  
-  throw 'Error';
-}
+  } else {
+    
+    throw 'Error';
+  }
 };
